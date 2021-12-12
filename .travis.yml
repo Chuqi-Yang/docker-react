@@ -7,7 +7,9 @@ services:
 
 before_install:
   - gcloud version || true
-  - gcloud components update --version 330.0.0
+  - if [ ! -d "$HOME/google-cloud-sdk/bin" ]; then rm -rf $HOME/google-cloud-sdk; export CLOUDSDK_CORE_DISABLE_PROMPTS=1; curl https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-366.0.0-linux-x86_64.tar.gz | bash; fi
+  # Add gcloud to $PATH
+  - source /home/travis/google-cloud-sdk/path.bash.inc
   - gcloud version
   - openssl aes-256-cbc -K $encrypted_3c6da100d0f9_key -iv $encrypted_3c6da100d0f9_iv
     -in polar-cargo-333117-8d85c0b7239f.json.enc -out polar-cargo-333117-8d85c0b7239f.json
