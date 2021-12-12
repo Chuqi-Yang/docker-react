@@ -8,7 +8,7 @@ before_install:
   -d
 - docker build -t chuqiyang/docker-react:latest -f Dockerfile.dev .
 script:
-- docker run -e CI=true chuqiyang/docker-react npm run test
+- docker run -e CI=true chuqiyang/docker-react
 deploy:
   provider: gae
   keyfile: polar-cargo-333117-8d85c0b7239f.json
