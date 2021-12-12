@@ -1,0 +1,11 @@
+language: generic 
+sudo: required
+services: 
+  - docker 
+
+#before run test or deploy
+before_install:
+  - docker build -t chuqiyang/docker-react:latest -f Dockerfile.dev . 
+
+script:
+  - docker run -e CI=true chuqiyang/docker-react npm run test
